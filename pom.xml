@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.jenkins-ci.plugins</groupId>
 		<artifactId>plugin</artifactId>
-		<version>4.1</version>
+		<version>4.88</version>
 		<relativePath />
 	</parent>
 	<groupId>io.jenkins.plugins</groupId>
@@ -12,14 +12,15 @@
 	<version>1.15-SNAPSHOT</version>
 	<packaging>hpi</packaging>
 	<properties>
-		<jenkins.version>2.164.3</jenkins.version>
-		<java.level>8</java.level>
+		<!-- https://www.jenkins.io/doc/developer/plugin-development/choosing-jenkins-baseline/ -->
+		<jenkins.baseline>2.462</jenkins.baseline>
+		<jenkins.version>${jenkins.baseline}.3</jenkins.version>
 	</properties>
 	<name>zerobug Plugin</name>
 	<description>Allows users to start security scans via zerobug.</description>
 	<url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
 	<scm>
-		<connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
+		<connection>scm:git:https://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
 		<developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
 		<url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
 		<tag>zerobug-1.14</tag>
@@ -30,59 +31,55 @@
 			<url>https://raw.githubusercontent.com/jenkinsci/${project.artifactId}-plugin/master/LICENSE</url>
 		</license>
 	</licenses>
-	<developers>
-		<developer>
-			<id>cvfelipeoliveira</id>
-			<name>Felipe Oliveira</name>
-			<email>cvfelipeoliveira@gmail.com</email>
-		</developer>
-	</developers>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>io.jenkins.tools.bom</groupId>
+				<artifactId>bom-${jenkins.baseline}.x</artifactId>
+				<version>4228.v0a_71308d905b_</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.jenkins-ci.plugins</groupId>
 			<artifactId>structs</artifactId>
-			<version>1.7</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jenkins-ci.plugins.workflow</groupId>
 			<artifactId>workflow-step-api</artifactId>
-			<version>2.12</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jenkins-ci.plugins.workflow</groupId>
 			<artifactId>workflow-cps</artifactId>
-			<version>2.39</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jenkins-ci.plugins.workflow</groupId>
 			<artifactId>workflow-job</artifactId>
-			<version>2.11.2</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jenkins-ci.plugins.workflow</groupId>
 			<artifactId>workflow-basic-steps</artifactId>
-			<version>2.6</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jenkins-ci.plugins.workflow</groupId>
 			<artifactId>workflow-durable-task-step</artifactId>
-			<version>2.13</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jenkins-ci.plugins.workflow</groupId>
 			<artifactId>workflow-api</artifactId>
-			<version>2.20</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jenkins-ci.plugins.workflow</groupId>
 			<artifactId>workflow-support</artifactId>
-			<version>2.14</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>

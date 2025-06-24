@@ -3,7 +3,7 @@ package io.jenkins.plugins.zerobug;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
-import javax.servlet.ServletException;
+import jakarta.servlet.ServletException;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.StringUtils;
@@ -16,7 +16,7 @@ import org.apache.http.util.EntityUtils;
 import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.QueryParameter;
-import org.kohsuke.stapler.StaplerRequest;
+import org.kohsuke.stapler.StaplerRequest2;
 import org.kohsuke.stapler.verb.POST;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -194,7 +194,7 @@ public class ZeroBugPublisher extends Recorder implements SimpleBuildStep {
 		}
 
 		@Override
-		public boolean configure(StaplerRequest req, JSONObject formData) throws FormException {
+		public boolean configure(StaplerRequest2 req, JSONObject formData) throws FormException {
 			req.bindParameters(this);
 			this.token = Secret.fromString(formData.getString("token"));
 			save();
